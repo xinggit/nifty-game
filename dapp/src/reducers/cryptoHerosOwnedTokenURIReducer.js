@@ -5,7 +5,7 @@ const fetchOwnedTokenURI = (state, action) => {
   let tokenURI = JSON.parse(action.result);
   let data = {
     name: tokenURI.name, 
-    image: 'https://ipfs.infura.io/ipfs/' + tokenURI.image,
+    image: 'https://ipfs.io/ipfs/' + tokenURI.image,
     HP: tokenURI.HP,
     ATK: tokenURI.ATK,
     DEF: tokenURI.DEF

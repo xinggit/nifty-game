@@ -23,6 +23,12 @@ export const getSimpleTokenAddress = (networkId) => {
       return '0x0';
     case '42':
       return '0x0';
+    case '1337':
+      //* development at local, please update your local contract's address here
+      return '0x5d2a39b00a574d89a162fa57f3cc205d9fcec812';
+    case '1666355943721':
+      //* development at local, please update your local contract's address here
+      return '0x5d2a39b00a574d89a162fa57f3cc205d9fcec812';
     default:
       return '0x0';
   }
@@ -38,8 +44,15 @@ export const getCryptoHerosTokenAddress = (networkId) => {
       return '0x0';
     case '42':
       return '0x0';
+    case '1337':
+      //* development at local, please update your local contract's address here
+      return '0x5d2a39b00a574d89a162fa57f3cc205d9fcec812';
+    case '1666355943721':
+      //* development at local, please update your local contract's address here
+      return '0x5d2a39b00a574d89a162fa57f3cc205d9fcec812';
     default:
       return '0x0';
+
   }
 }
 
@@ -53,6 +66,12 @@ export const getCryptoHerosGameAddress = (networkId) => {
       return '0x0';
     case '42':
       return '0x0';
+    case '1337':
+      //* development at local, please update your local contract's address here
+      return '0xEEDb5B347eee41F7626338c3353d3Bb598904863';
+    case '1666355943721':
+      //* development at local, please update your local contract's address here
+      return '0xEEDb5B347eee41F7626338c3353d3Bb598904863';
     default:
       return '0x0';
   }

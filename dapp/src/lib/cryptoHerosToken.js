@@ -820,7 +820,12 @@ CryptoHerosToken.prototype.transferOwnership = function (address, callback) {
 
 CryptoHerosToken.prototype.getOwnedTokens = function (address, callback) {
   return this.cryptoHerosTokenPromise.then(function (cryptoHerosToken) {
-    return cryptoHerosToken.getOwnedTokensAsync(address);
+  	console.log("cryptoHerosToken.js:823, address: " + address);
+  	console.log(cryptoHerosToken);
+		let a = cryptoHerosToken.getOwnedTokensAsync(address);
+		console.log(a);
+		console.log("cryptoHerosToken.js:826, address: " + address);
+    return a;
   });
 }
 

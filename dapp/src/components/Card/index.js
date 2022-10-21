@@ -5,13 +5,14 @@ import style from './Card.css';
 import { getCryptoHerosTokenAddress } from '../../lib/web3Service';
 import axios from 'axios';
 import LoadingCoin from '../LoadingCoin';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-} from 'material-ui/Dialog';
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+
 
 const cx = classnames.bind(style);
 
@@ -76,6 +77,9 @@ class Card extends Component {
       data: doMintTx
     }
 
+    console.log("card:80 msk: " + msk);
+    console.log(msk);
+
     web3.eth.sendTransaction(msk, this.handleMetaMaskCallBack);
     
   }
@@ -87,22 +91,28 @@ class Card extends Component {
       console.error('MetaMask Error:', err.message);
       this.setState({isLoading: false});
       return;
+    } else {
+      console.log("hello world card:92")
     }
 
     const tx = result;
     let t = setInterval(async ()=>{
-      const result = await axios.get(`https://api-ropsten.etherscan.io/api?module=transaction&action=gettxreceiptstatus&txhash=${tx}&apikey=RAADZVN65BQA7G839DFN3VHWCZBQMRBR11`);
+      let url = `https://api-ropsten.etherscan.io/api?module=transaction&action=gettxreceiptstatus&txhash=${tx}&apikey=RAADZVN65BQA7G839DFN3VHWCZBQMRBR11`;
+      console.log("card: 101, url: " + url);
+      const result = await axios.get(url);
 
-      if(result.data.result.status === "1") {
+      if(result.data.status === "1") {
         this.ReloadDataFn();
         window.clearInterval(t);
       }
+      console.log("result.data.result.status: " + result.data.result.status)
 
     },3000);
   }
 
   ReloadDataFn =()=>{
     const {network, account} = this.props.metaMask;
+    console.log("card:116");
     //抓卡牌編號
     this.props.handleCryptoHerosTokenGetOwnedTokens(network, account, this.props.TimeOutGoTokens);
     setTimeout(() => {

@@ -168,6 +168,8 @@ export default class extends React.Component {
       value: this.props.web3.toWei(betEth, 'ether'),
       data: byteData
     };
+
+    console.log("arena:172, isLoading: " + this.state.isLoading);
     
     web3.eth.sendTransaction(tx, (err, response) => {
       if(err) {

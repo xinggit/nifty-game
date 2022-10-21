@@ -61,7 +61,7 @@ contract("CryptoHeros token", accounts => {
     it("Creates crypto heros with specified URI", async () => {
       let cryptoHerosToken = await CryptoHerosToken.deployed();
       for (let i=0;i<10;i++) {
-        await cryptoHerosToken.mint({from: accounts[1], value: web3.toWei(0.02, "ether")});
+        await cryptoHerosToken.mint({from: accounts[1], value: web3.utils.toWei('0.02', "ether")});
       }
     });
 
@@ -107,11 +107,14 @@ contract("CryptoHeros token", accounts => {
       const res = await cryptoHerosToken.getOwnedTokens(accounts[1]);
       //console.log('res: ', res);
       console.log('cryptoHerosGame: ', cryptoHerosGame.address);
-      web3.eth.sendTransaction({from: accounts[0], to: cryptoHerosGame.address, value: web3.toWei(10,"ether"), gas: 2000000});
-      console.log(web3.eth.getBalance(accounts[0]).toNumber());
+      web3.eth.sendTransaction({from: accounts[0], to: cryptoHerosGame.address, value: web3.utils.toWei('10',"ether"), gas: 2000000});
+      web3.eth.getBalance(accounts[0]).then(balance => {
+        // You can use balance here
+        console.log(balance);
+      });
 
       for (let i=0;i<res.length;i++) {
-        const res2 = await cryptoHerosGame.createSingleGame(res[i], {from: accounts[1], value: web3.toWei(0.02, "ether")});
+        const res2 = await cryptoHerosGame.createSingleGame(res[i], {from: accounts[1], value: web3.utils.toWei('0.02', "ether")});
         assert.equal(res2.receipt.status, '0x1');
         // let singleGames = await cryptoHerosGame.singleGames(i);
         // console.log('game result: ', singleGames[5].toString() + ' | ' + singleGames[4].toString() + ' | ' + singleGames[1].toString() + ' | ' + singleGames[2].toString());

@@ -70,10 +70,12 @@ export const doTransferOwnership = (networkId, address) => {
 }
 
 //我有多少卡片編號
-export const doGetOwnedTokens = (networkId, address) => {
+export const doGetOwnedTokens = async (networkId, address) => {
   try {
     setWeb3Provider(networkId);
-    const result = cryptoHerosToken.getOwnedTokens(address);
+    const result = await cryptoHerosToken.getOwnedTokens(address);
+    console.log("cryptoHerosTokenService.js:77 result: ");
+    console.log(result);
     return result;
   } catch (err) {
     console.log('doGetOwnedTokens: ', err);

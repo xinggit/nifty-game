@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Web3 from 'web3';
-import Button from 'material-ui/Button';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog';
-import Slide from 'material-ui/transitions/Slide';
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogContent from '@material-ui/core/DialogContent'
+import DialogContentText from '@material-ui/core/DialogContentText'
+import DialogTitle from '@material-ui/core/DialogTitle'
+
+import Slide from '@material-ui/core/Slide';
+import Button from "@material-ui/core/Button";
 
 const messages = {
   'LOAD_MATAMASK_WALLET_ERROR': 'Load metamask wallet error, maybe try Metamask later, or upload a wallet json file.',
@@ -84,6 +84,7 @@ export class MetaMask extends Component {
   fetchAccounts() {
     //const { web3 } = window;
     if (this.props.web3 !== null) {
+
       this.props.web3.eth.getAccounts((err, accounts) => {
         if (err) {
           this.setState({message: messages.LOAD_MATAMASK_WALLET_ERROR});
@@ -95,6 +96,7 @@ export class MetaMask extends Component {
             // if account changed then change redux state
             if (accounts[0] !== this.props.metaMask.account) {
               this.props.handleMetaMaskAccount(accounts[0]);
+              console.log("accounts: " + accounts[0])
             }
           }
         }
@@ -106,19 +108,22 @@ export class MetaMask extends Component {
     //const { web3 } = window;
     if (this.props.web3 !== null) {
       this.props.web3.version.getNetwork((err, netId) => {
-        console.log('netId:',netId);
         if(netId === "1"){
+          console.log('netId 113:',netId);
           this.props.handleMetaMaskNetwork(null);
           this.setState({metaMaskLockDialogOpen: true, message:messages.METAMASK_TEST_NET  });
         }
 
         
         if (err) {
+          console.log('netId 120:',netId);
           this.props.handleMetaMaskNetwork(null);
           this.setState({metaMaskLockDialogOpen: true, message: messages.NETWORK_ERROR });
         } else {
+          console.log('netId 124:',netId);
           // if network changed then change redux state
           if (netId !== this.props.metaMask.network) {
+            console.log('netId 127:',netId);
             this.props.handleMetaMaskNetwork(netId);
           }
         }
@@ -126,12 +131,34 @@ export class MetaMask extends Component {
     }
   }
 
+
+
   componentDidMount() {
     let self = this;
     window.addEventListener('load', function() {
       let web3 = window.web3;
+      var web3Provider;
+      console.log("window.ethereum: ", window.ethereum);
+      if (window.ethereum) {
+        web3Provider = window.ethereum;
+        try {
+          // 请求用户授权
+          window.ethereum.enable();
+        } catch (error) {
+          // 用户不授权时
+          console.error("User denied account access")
+        }
+      } else if (window.web3) {   // 老版 MetaMask Legacy dapp browsers...
+        web3Provider = window.web3.currentProvider;
+      } else {
+        web3Provider = new Web3.providers.HttpProvider('http://localhost:8545');
+      }
+      web3 = new Web3(web3Provider);//web3js就是你需要的web3实例
+
+
+
       if (typeof web3 !== 'undefined') {
-        window.web3 = new Web3(web3.currentProvider);
+        window.web3 = web3;
         self.props.setWeb3(window.web3);
         self.fetchAccounts();
         self.fetchNetwork();

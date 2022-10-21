@@ -49,10 +49,13 @@ class App extends Component {
     window.addEventListener("mousemove", this.Elffn);
     let t = setInterval(()=>{
       const {network, account} = this.props.metaMask;
+      console.log("App:52, network: " + network + ", account" + account);
       if(network!==null && account!==null){
+        console.log("App:54, network: " + network + ", account" + account);
         window.clearInterval(t);
         //抓卡牌編號
         this.props.handleCryptoHerosTokenGetOwnedTokens(network, account, this.TimeOutGoTokens);
+        console.log(this.props);
       }
     },300);
 
@@ -87,6 +90,7 @@ class App extends Component {
 
   //撈回所有的卡片
   TimeOutGoTokens = res =>{
+    console.log("App TimeOutGoTokens, isLoading: " + this.state.isLoading);
     this.setState({brand: res.split(","), isLoading: false});
   }
 
@@ -227,7 +231,7 @@ class App extends Component {
         </div>
 
         <Card
-          {...this.state} 
+          {...this.state}
           {...this.props}
           doMint={doMint}
           TimeOutGoTokens={this.TimeOutGoTokens}

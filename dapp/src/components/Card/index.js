@@ -18,7 +18,18 @@ const cx = classnames.bind(style);
 
 
 function ipfsUrl(hash) {
-  return 'https://ipfs.infura.io/ipfs/' + hash;
+  if (Math.floor(Math.random() * 10 + 1) % 4 === 0) {
+    return "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14144900367%2F641&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668965480&t=95915f1ffe5d50fbb55dbc06f957f6ed";
+  } else if (Math.floor(Math.random() * 10 + 1) % 4 === 1) {
+    return "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14144900587%2F641&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668965480&t=78d313a1eb27ce947ca850bc18a400fc";
+  } else if (Math.floor(Math.random() * 10 + 1) % 4 === 2) {
+    return "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14144900643%2F641.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668965480&t=dfe3954baab69abe9188e6716515bb94";
+  } else if (Math.floor(Math.random() * 10 + 1) % 4 === 3) {
+    return "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fx0.ifengimg.com%2Fres%2F2021%2F136457B3CFE5FACB8A03B11906CA5FFA10A267B5_size37_w700_h601.jpeg&refer=http%3A%2F%2Fx0.ifengimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668965480&t=f51882d15bc6bde4213a6bac8a244cb3";
+  }
+  else {
+    return "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F14144900367%2F641&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668965480&t=95915f1ffe5d50fbb55dbc06f957f6ed";
+  }
 }
 
 const ErrorAlertDialog = (props) => (
@@ -156,9 +167,7 @@ class Card extends Component {
               return (
                 <div className="cardBox" key={idx}>
                   <div className="cardbg">
-                    <div className="s_bgcard" style={{backgroundImage: `url("${ipfsUrl(obj[2])}")` }}></div>
-                    <div className="s_user" style={{backgroundImage: `url("${ipfsUrl(obj[1])}")` } }></div>
-                    <div className="s_number" style={{backgroundImage: `url("${ipfsUrl(obj[3])}")` }}></div>
+                    <div className="s_bgcard" style={{backgroundImage: `url("${ipfsUrl(obj[idx])}")` }}></div>
                   </div>
                 </div>
               )

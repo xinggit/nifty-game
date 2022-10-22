@@ -323,9 +323,9 @@ export default class extends React.Component {
                 <BattleCard
                   isLock
                   isOpenCard={true}
-                  bgImg={selectedCard.bgImg || "QmTDfdUwLNTXJ1PgRqPxyW41jrdxhvh72C4h62dNhNgvtP"}
-                  pixelImg={selectedCard.roleImg || "QmVALBXYymSKPz5wN1JFVHrZmnNhz7JW8J8QM5zVrHmagk"}
-                  numberImg={selectedCard.numberImg || "Qmd9Xyuf3zQiyPfjDisVwL6J4AcTJy4ycFWBXdCQmjupyk"}
+                  bgImg={"QmTDfdUwLNTXJ1PgRqPxyW41jrdxhvh72C4h62dNhNgvtP"}
+                  pixelImg={"QmVALBXYymSKPz5wN1JFVHrZmnNhz7JW8J8QM5zVrHmagk"}
+                  numberImg={"Qmd9Xyuf3zQiyPfjDisVwL6J4AcTJy4ycFWBXdCQmjupyk"}
                 />
               </div>
 

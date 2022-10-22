@@ -43,9 +43,9 @@ export default class extends React.Component {
       <div className={cx('cardbox', { small: isSmall || false } )}>
         <div className={cx('gameCard', { OpenCard: isOpenCard })}>
           <div className="seeCard">
-            <div className="c_bg" style={{ backgroundImage: `url(https://ipfs.infura.io/ipfs/${bgImg})` }}></div>
-            <div className="c_user" style={{ backgroundImage: `url(https://ipfs.infura.io/ipfs/${pixelImg})` }}></div>
-            <div className="c_number" style={{ backgroundImage: `url(https://ipfs.infura.io/ipfs/${numberImg})` }}></div>
+            <div className="c_bg" style={{ backgroundImage: `url(https://infura-ipfs.io/ipfs/${bgImg})` }}></div>
+            <div className="c_user" style={{ backgroundImage: `url(https://infura-ipfs.io/ipfs/${pixelImg})` }}></div>
+            <div className="c_number" style={{ backgroundImage: `url(https://infura-ipfs.io/ipfs/${numberImg})` }}></div>
           </div>
           <div className="BackCard"></div>
         </div>

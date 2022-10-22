@@ -256,13 +256,6 @@ class App extends Component {
         { isLoadingCoinLoading && <LoadingCoin />}
 
 
-        <span className="text">
-          <div className="footer">
-            <a href="https://www.portal.network/" target="_blank">Powered by Portal Network</a>
-            <a href="https://www.portal.network/privacy_policy.html" target="_blank">Privacy & Policy</a>
-            <a href="https://www.portal.network/terms_coditions.html" target="_blank">Terms of use</a>
-          </div>
-        </span>
       </div>
     );
   }
